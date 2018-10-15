@@ -1,19 +1,31 @@
 package com.fundamentals.java;
+import java.util.Scanner;
 
 public class WelcomeToJava {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-someMethod();
-stringExamples();
-moreStringExamples();
+ //someMethod();
+ //stringExamples();
+ //moreStringExamples();
+ //primitiveExamples();
+		scannerExamples();
+		
+		
 	}
-//My first method
+	
+private static void primitiveExamples() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	//My first method
 	public static void someMethod() {
 		System.out.println("Welcome to Java");
 	}
 	
 	public static void stringExamples() {
+
 		// String = Type | str1 = variable name | Welcome = string literal
 		String str1 = "Welcome";
 		String str2 = new String ("Java"); 
@@ -50,8 +62,31 @@ moreStringExamples();
 		System.out.println(isContained); 
 		
 	}
+
+	public static void dataTypeExamples () {
+		PrimitiveExamples pe = new PrimitiveExamples ();
+		pe.myFirstPrimitiveMethod();
+		pe.myAddition();
+		pe.mySubtraction();
+		pe.myMultiplication();
+		pe.myDivision();
+		pe.myModulus();
+		pe.myOrderOp();
+	}
 	
+	// Example of the use of Scanner 
+	public static void scannerExample() {
+		int x, y, z; 
+		System.out.println("Enter two integers to calculate their sum ");
+		Scanner in = new Scanner(System.in);
+		x = in.nextInt();
+		y = in.nextInt();
+		z = x + y;
+		System.out.println("Sum of entered intergers = " + z); 
+		
 	
+	}
 }
+
 
 
