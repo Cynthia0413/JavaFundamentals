@@ -9,17 +9,12 @@ public class WelcomeToJava {
  //stringExamples();
  //moreStringExamples();
  //primitiveExamples();
-		scannerExamples();
+		scannerExample();
 		
 		
 	}
 	
-private static void primitiveExamples() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	//My first method
+//My first method
 	public static void someMethod() {
 		System.out.println("Welcome to Java");
 	}
@@ -83,7 +78,7 @@ private static void primitiveExamples() {
 		y = in.nextInt();
 		z = x + y;
 		System.out.println("Sum of entered intergers = " + z); 
-		
+		in.close();
 	
 	}
 }

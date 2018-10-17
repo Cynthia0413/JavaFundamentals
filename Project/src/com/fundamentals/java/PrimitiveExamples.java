@@ -81,7 +81,7 @@ public class PrimitiveExamples {
 		short a = 5; 
 		int b = a;
 		System.out.println(b);
-		int c = 100;
+		int c = 6488888;
 		short d = (short)c;
 		System.out.println(d);
 		
