@@ -9,15 +9,35 @@ public class WelcomeToJava {
  //stringExamples();
  //moreStringExamples();
  //primitiveExamples();
-//scannerExample();
+        //scannerExample();
 		//myOperatorExample();
-		myAssignmentExample(); 
+		//myAssignmentExample(); 
+		//myDecisionExample(); 
+		mySongExample();
 		
 		
+	}   
+	
+	public static void mySongExample() {
+		SongExamples se = new SongExamples();
+		String beer = se.bottlesOfBeer(); 
+		System.out.println(beer);
+	}
+	
+	public static void myDecisionExample() {
+		DecisionExamples de = new DecisionExamples(); 
+		de.basicIfStatement();
+		de.chainIfStatement();
+		de.switchExample(60);
 		
-		
+		LoopingExamples le = new LoopingExamples(); 
+		le.myWhileLoop();
+		le.myDoWhileLoop();
+		le.myForLoop();
+		le.myBranchExample();
 		
 	}
+	
 	
 	public static void myAssignmentExample() {
 		AssignmentExample ae = new AssignmentExample(); 
