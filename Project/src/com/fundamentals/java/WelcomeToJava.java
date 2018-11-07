@@ -1,25 +1,100 @@
 package com.fundamentals.java;
+
 import java.util.Scanner;
+import com.fundamentals.data.*; 
 
 public class WelcomeToJava {
 
+	public static final int MY_VALUE = 10;
+	public static int MY_OTHER_VALUE; 
+	
+	static { 
+		MY_OTHER_VALUE = 25; 
+		int total = MY_VALUE * MY_OTHER_VALUE; // total should be 250
+		System.out.println(total);
+	}
+	
+	
+	
 	public static void main(String[] args) {
+		MY_OTHER_VALUE = 35;
+		
 		// TODO Auto-generated method stub
- //someMethod();
- //stringExamples();
- //moreStringExamples();
- //primitiveExamples();
-     //scannerExample();
-    //myOperatorExample();
-	//myAssignmentExample(); 
+        //someMethod();
+        //stringExamples();
+        //moreStringExamples();
+        //primitiveExamples();
+        //scannerExample();
+        //myOperatorExample();
+	    //myAssignmentExample(); 
 		//myDecisionExample(); 
 		//mySongExample();
 		//myHouse(); 
 		//sampleArray(); 
 		//myDog();		
 		//myTwoDimensionArray(); 
-		myJaggedArray(); 
-	} 
+		//myJaggedArray();
+		//accessModifierExamples();
+		//overrideExample();
+		//overloadExample(); 
+		//inheritanceExample(); 
+		//sampleUtility(); 
+		// something(); // Can not run in a static method 
+		
+		
+	}
+	
+	public void something() { //Will not run in static method
+		}
+	
+	public static void sampleUtility() {
+		System.out.println(Utility.addSomething(5, 23));
+		Utility.somethingElse();
+	}
+	
+	public static void overrideExample() {
+		House myHouse = new House(); 
+		Condo myCondo = new Condo(); 
+		House myOtherhouse = new Condo(); //Inplicit Cast
+		Condo myOtherCondo = (Condo)new House(); //Explicit Cast
+		//myHouse.openDoor(); 
+		//myCondo.openDoor(); 
+		myOtherhouse.openDoor(); 
+
+	}
+	
+	public static void overloadExample() {
+		Apple myApple = new Apple(); 
+		myApple.display("Granny Smiths", 5); 
+		myApple.display("Sour", 3, "Red");
+		// String Show = myApple.display("Granny Smiths", "Green"); 
+		System.out.println(myApple.display("Granny Smiths", "Green"));
+		
+		System.out.println(Apple.SOUR_SCALE);
+		System.out.println(myApple.SOUR_SCALE);
+		System.out.println(Apple.SWEET_SCALE);
+		Apple.SWEET_SCALE = 25;
+		
+	}
+	
+	public static void inheritanceExample() {
+		House house = new House();
+		Condo condo = new Condo(); 
+		condo.setDoors("Red Door");
+		System.out.println(condo.getDoors());
+		house.setDoors("Purple Door"); 
+		System.out.println(house.getDoors());
+		
+		
+	}
+
+	public static void accessModifierExamples() {
+		PrimitiveExamples pe = new PrimitiveExamples(); 
+		Apple myApple = new Apple(); 
+		pe.myProtectedMethod();
+		
+	}
+	
 	
 	public static void myJaggedArray() {
 int[][] anArray = new int [3][5]; 
@@ -94,24 +169,25 @@ int[][] anArray = new int [3][5];
 	}
 	public static void myHouse() {
 		House myHouse = new House(); 
-		myHouse.doors = "Red Doors";
-		
+		//myHouse.doors = "Red Doors";
+		myHouse.setDoors("Red Doors");
 		
 		House mySecondHome = new House(); 
-		mySecondHome.doors = "Purple Doors"; 
+		//mySecondHome.doors = "Purple Doors"; 
+		mySecondHome.setDoors("Purple Doors");
 		
 		House myThirdHome = myHouse;
 		myHouse = mySecondHome; 
 		
 		House[] houseArray = new House[] { myHouse, mySecondHome, myThirdHome};
 		
-		//System.out.println(myHouse.doors); //Red doors
-		//System.out.println(mySecondHome.doors); // Purple doors
-		//System.out.println(myThirdHome.doors); 
+		System.out.println(myHouse.getDoors()); 
+		System.out.println(mySecondHome.getDoors()); 
+		System.out.println(myThirdHome.getDoors()); 
 		
 		int i = 0;
 		do { 
-			System.out.println(houseArray[i].doors);
+			System.out.println(houseArray[i].getDoors());
 			i ++; 
 		} while(i < houseArray.length); 
 		
