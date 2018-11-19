@@ -5,8 +5,8 @@ public class Apple {
 	public static int SWEET_SCALE = 20;
 
 	int sze = 1; 
-	public String color = "Red"; 
-	
+	public String color = "Red";  
+	 
 	void myAppleMethod() {
 		System.out.println("My apple method");
 	}

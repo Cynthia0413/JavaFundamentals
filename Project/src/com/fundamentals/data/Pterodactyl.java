@@ -1,6 +1,10 @@
 package com.fundamentals.data;
 
-public class Pterodactyl extends Dinosaur{
+public class Pterodactyl extends Dinosaur{ 
+	
+	public Pterodactyl(String teeth, String skin) {
+		super (teeth, skin); 
+	}
 	
 	/**
 	 * A method that all Pterodactyls do

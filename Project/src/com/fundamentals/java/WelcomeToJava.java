@@ -1,6 +1,6 @@
 package com.fundamentals.java;
 
-import java.util.Scanner;
+import java.util.*;
 import com.fundamentals.data.*;
 
 public class WelcomeToJava {
@@ -40,18 +40,122 @@ public class WelcomeToJava {
 		// something(); // Can not run in a static method
 		// quiz2Verify();
 		// myAbstractExample();
-		myInterfaceExample();
+		// myInterfaceExample();
+		// myConstructorPlusExample();
+		// arrayListExamples();
+		// arrayListObjectExample();
+		// hashSetExample();
+		hashMapExample();
+
+	}
+
+	public static <E> void hashMapExample() {
+		HashMap<Integer, String> myMap = new HashMap<Integer, String>();
+		myMap.put(0, "Something"); 
+		myMap.put(1, "Somethine else");
+		myMap.put(2, "Something");
+		myMap.put(3, "One More"); 
+		myMap.remove(2);
+		
+		for(String value : myMap.values()) { // this is the shorter and easy way 
+			System.out.println(value);
+		}
+		
+		Set<E> set = (Set<E>) myMap.entrySet(); 
+		Iterator iterate = set.iterator(); 
+		while(iterate.hasNext()) {
+			Map.Entry me = (Map.Entry)iterate.next(); 
+			System.out.print(me.getKey() + " : ");
+			System.out.println(me.getValue());
+		}
 		
 	}
 
-	public static void myInterfaceExample() {
-		House myHouse = new House();
-		Condo myCondo = new Condo();
+	/*
+	 * //it will take a duplicate but it will ignore it. only printed one of each.
+	 * and it also ignores order. If the item added is already in the collection, it
+	 * will not add it, or give it any indication that it won't.
+	 */
+	public static void hashSetExample() {
+		HashSet<String> myString = new HashSet<String>();
+		myString.add("Something");
+		myString.add("Something else");
+		myString.add("Something");
+		myString.add("Something else");
+		for (String s : myString) {
+			System.out.println(s);
+		}
 
-		myHouse.decorate();
-		myHouse.installPlumbing(); 
-		myCondo.decorate();
-		myHouse.supplementWork(); 
+		Dinosaur dino = new Dinosaur("sharp");
+		Dinosaur dino2 = new Dinosaur("serrated");
+		Dinosaur dino3 = new Dinosaur("dull");
+		HashSet<Dinosaur> myDino = new HashSet<Dinosaur>();
+		myDino.add(dino);
+		myDino.add(dino2);
+		myDino.add(dino3);
+		for (Dinosaur d : myDino) {
+			System.out.println(d.getTeeth() + " " + d.getSkin());
+
+		}
+	}
+
+	public static void arrayListObjectExample() {
+		Dinosaur dino = new Dinosaur("sharp");
+		Dinosaur dino2 = new Dinosaur("serrated");
+		Dinosaur dino3 = new Dinosaur("dull");
+		ArrayList<Dinosaur> animal = new ArrayList<Dinosaur>();
+		animal.add(dino);
+		animal.add(dino2);
+		animal.add(dino3);
+		for (Dinosaur d : animal) {
+			System.out.println(d.getTeeth());
+		}
+		for (int i = 0; i < animal.size(); i++) {
+			System.out.println(animal.get(i).getTeeth());
+		}
+	}
+
+	public static void arrayListExamples() {
+		ArrayList<String> names = new ArrayList<String>();
+		names.add("something");
+		names.add("something else");
+		names.add("something");
+		names.remove(2);
+		names.add("happy");
+		for (int i = 0; i < names.size(); i++) {
+			System.out.println(names.get(i));
+		}
+		// Recommend doing it with a generic parameter instead like above
+		ArrayList place = new ArrayList();
+		place.add(10);
+		place.add("type");
+
+		for (String string : names) {
+			System.out.println(string);
+		}
+	}
+
+	public static void myConstructorPlusExample() {
+		GrannySmiths gs = new GrannySmiths();
+		gs.decide();
+		TRex tr = new TRex(" Sharp", " Smooth");
+		System.out.println("The TRex has" + tr.getSkin() + " skin and" + tr.getTeeth() + " teeth.");
+
+	}
+
+	public static void myInterfaceExample() {
+		// House myHouse = new House();
+		House mySummerHouse = new House("storm windows");
+		House myLogHouse = new House("wooden windows, wooden doors");
+		System.out.println(mySummerHouse.getWindows());
+		System.out.println(myLogHouse.getWindows() + " " + myLogHouse.getDoors());
+
+		Condo myCondo = new Condo("Sunny");
+
+		// myHouse.decorate();
+		// myHouse.installPlumbing();
+		// myCondo.decorate();
+		// myHouse.supplementWork();
 	}
 
 	public static void myAbstractExample() {
@@ -75,9 +179,9 @@ public class WelcomeToJava {
 		quiz2.isValid = false;
 		quiz2.myPublicMethod();
 		System.out.println(Quiz2.mySubtraction(10, 5));
-		Dinosaur dino = new Dinosaur();
-		TRex trex = new TRex();
-		Pterodactyl pt = new Pterodactyl();
+		Dinosaur dino = new Dinosaur("razor", "scaly");
+		TRex trex = new TRex("razer", "feathery");
+		Pterodactyl pt = new Pterodactyl("fly", "blah");
 		dino.setSkin("leathery");
 		dino.move();
 		System.out.println(dino.getSkin());
@@ -97,12 +201,12 @@ public class WelcomeToJava {
 
 	public static void overrideExample() {
 		House myHouse = new House();
-		Condo myCondo = new Condo();
-		House myOtherhouse = new Condo(); // Inplicit Cast
-		Condo myOtherCondo = (Condo) new House(); // Explicit Cast
+		// Condo myCondo = new Condo();
+		// House myOtherhouse = new Condo(); // Inplicit Cast
+		// Condo myOtherCondo = (Condo) new House(); // Explicit Cast
 		// myHouse.openDoor();
 		// myCondo.openDoor();
-		myOtherhouse.openDoor();
+		// myOtherhouse.openDoor();
 
 	}
 
@@ -122,9 +226,9 @@ public class WelcomeToJava {
 
 	public static void inheritanceExample() {
 		House house = new House();
-		Condo condo = new Condo();
-		condo.setDoors("Red Door");
-		System.out.println(condo.getDoors());
+		// Condo condo = new Condo();
+		// condo.setDoors("Red Door");
+		// System.out.println(condo.getDoors());
 		house.setDoors("Purple Door");
 		System.out.println(house.getDoors());
 

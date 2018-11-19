@@ -1,11 +1,18 @@
 package com.fundamentals.data;
 
-public class Dinosaur {
+public class Dinosaur { 
 
 	private String teeth; 
-	
 	private String skin;
-
+	
+	public Dinosaur(String teeth, String skin) {
+	
+	this.teeth = teeth; 
+	this.skin = skin;
+	}
+	public Dinosaur(String teeth) {
+	this(teeth, "rough"); 
+}
 	public String getTeeth() {
 		return teeth;
 	}

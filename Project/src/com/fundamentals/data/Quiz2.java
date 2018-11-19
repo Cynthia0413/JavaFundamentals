@@ -2,7 +2,7 @@ package com.fundamentals.data;
 
 public class Quiz2 {
 
-	private String variable1 = "Hello"; 
+	private String variable1 = "Hello";  
 	
 	String variable2 = "Java"; 
 	

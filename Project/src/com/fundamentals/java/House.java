@@ -19,6 +19,37 @@ public class House implements HomeInterface, PlumbingInterface {
 	 */
 	protected String value = "My House"; 
 	
+	/* Default constructor with a println */
+	public House() {
+		System.out.println("My default constructor"); 
+	}
+	public House(String windows) {
+		this.windows = windows; 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	public House(String windows, String doors) {
+	this.windows = windows; 
+	this.doors = doors;
+	
+	}
 	
 	public void setWindows(String value) {
 		this.windows = value;
@@ -58,7 +89,7 @@ public class House implements HomeInterface, PlumbingInterface {
 	@Override
 	public void decorate() {
 		// TODO Auto-generated method stub
-		System.out.println("Decorate House");
+		System.out.println("Decorate House"); 
 		
 		}
 
