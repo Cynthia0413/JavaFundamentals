@@ -1,7 +1,12 @@
 package com.fundamentals.java;
 
 import java.util.*;
+
 import com.fundamentals.data.*;
+enum iceCream {
+	Vanilla, Chocolate, Strawberry, Carmel;
+}
+
 
 public class WelcomeToJava {
 
@@ -45,8 +50,33 @@ public class WelcomeToJava {
 		// arrayListExamples();
 		// arrayListObjectExample();
 		// hashSetExample();
-		hashMapExample();
-
+		// hashMapExample();
+		// enumSample(); 
+		exceptionExample(); 
+		
+	}
+	public static void exceptionExample() {
+		ExceptionSample es = new ExceptionSample(); 
+		//es.myException();
+		//es.mySecondException(); 
+		es.myThirdException();
+	}
+	
+	
+	
+	
+	public static void enumSample() {
+		iceCream ic = iceCream.Strawberry;
+		System.out.println(ic);
+		HolidayDinner hd = new HolidayDinner();  
+		hd.letsEat(); 
+		hd.letsChoose(Dinner.Turkey);
+		hd.letsChoose(Dinner.Ham);
+		hd.letsChoose(Dinner.PumpkinPie);
+		
+		Dinner d1 = Dinner.MashedPotatoes;
+		System.out.println(d1);
+		d1.readyNow();
 	}
 
 	public static <E> void hashMapExample() {
