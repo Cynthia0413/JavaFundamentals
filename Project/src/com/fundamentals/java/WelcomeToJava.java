@@ -2,7 +2,41 @@ package com.fundamentals.java;
 
 import java.util.*;
 
+import com.designpatterns.base.BikeInterface;
+import com.designpatterns.base.DownhillBike;
+import com.designpatterns.base.NarrowWheel;
+import com.designpatterns.base.RoadBike;
+import com.designpatterns.base.TouringBike;
+import com.designpatterns.base.WheelInterface;
+import com.designpatterns.base.WideWheel;
+import com.designpatterns.base.BikeInterface.Color;
+import com.designpatterns.behavioral.BikeGearBox;
+import com.designpatterns.behavioral.BikeSpeedMonitor;
+import com.designpatterns.behavioral.BikeSpeedometer;
+import com.designpatterns.behavioral.GearBox;
+import com.designpatterns.behavioral.MountainBikeRange;
+import com.designpatterns.behavioral.RoadBikeRange;
+import com.designpatterns.behavioral.SpeedMonitor;
+import com.designpatterns.behavioral.Speedometer;
+import com.designpatterns.behavioral.WheelDiagnostics;
+import com.designpatterns.behavioral.WheelInventory;
+import com.designpatterns.creational.AbstractBikeFactory;
+import com.designpatterns.creational.BikeBuilder;
+import com.designpatterns.creational.BikeDirector;
+import com.designpatterns.creational.BikeFrameInterface;
+import com.designpatterns.creational.BikeSeatInterface;
+import com.designpatterns.creational.RoadBikeBuilder;
+import com.designpatterns.creational.RoadBikeDirector;
+import com.designpatterns.creational.RoadBikeFactory;
+import com.designpatterns.creational.SerialNumberGenerator;
+import com.designpatterns.structural.BikeFacade;
+import com.designpatterns.structural.CustomGrips;
+import com.designpatterns.structural.GoldFrameBike;
+import com.designpatterns.structural.UltraWheel;
+import com.designpatterns.structural.UltraWheelAdapter;
 import com.fundamentals.data.*;
+
+
 enum iceCream {
 	Vanilla, Chocolate, Strawberry, Carmel;
 }
@@ -19,8 +53,8 @@ public class WelcomeToJava {
 		System.out.println(total);
 	}
 
-	public static void main(String[] args) {
-		MY_OTHER_VALUE = 35;
+	//public static void main(String[] args) {
+		//MY_OTHER_VALUE = 35;
 
 		// TODO Auto-generated method stub
 		// someMethod();
@@ -52,9 +86,142 @@ public class WelcomeToJava {
 		// hashSetExample();
 		// hashMapExample();
 		// enumSample(); 
-		exceptionExample(); 
+		//exceptionExample(); 
+		
+   //}
+	
+	public static void decoratorPattern() {
+		BikeInterface myTourBike = new TouringBike(new NarrowWheel(24)); 
+		System.out.println(myTourBike); 
+		
+		myTourBike = new GoldFrameBike(myTourBike); 
+		System.out.println(myTourBike);
+		
+		myTourBike = new CustomGrips(myTourBike); 
+		System.out.println(myTourBike); 
+	}
+	
+	public static void facadePattern() {
+		BikeFacade facade = new BikeFacade(); 
+		facade.prepareForSale(new DownhillBike(new WideWheel(24)));
+	}
+	public static void main(String[] args) {
+		//adapterPatterns(); 
+		//decoratorPattern(); 
+		//facadePattern(); 
+		//creationalPatterns(); 
+		//iteratorPattern(); 
+		//observerPatternV2();
+		visitorPattern(); 
+		
+	} 
+	
+	public static void observerPatternV2() {
+		BikeSpeedometer speedo = new BikeSpeedometer(); 
+		speedo.addSpeedometerListener(new BikeSpeedMonitor());
+		speedo.addSpeedometerListener(new BikeGearBox());
+		
+		//Pedal at different speeds
+		speedo.setCurrentSpeed(5);
+		speedo.setCurrentSpeed(10);
+		speedo.setCurrentSpeed(20);
+		speedo.setCurrentSpeed(30);
+		speedo.setCurrentSpeed(35);
 		
 	}
+	public static void observerPattern() {
+		// Create the Speed Monitor 
+		SpeedMonitor monitor = new SpeedMonitor(); 
+		// Create a speedometer and register the monitor to it 
+		Speedometer speedo = new Speedometer(); 
+		speedo.addObserver(monitor);
+		speedo.addObserver(new GearBox());
+		
+		// Pedal at different speeds 
+		speedo.setCurrentSpeed(5);
+		speedo.setCurrentSpeed(10);
+		speedo.setCurrentSpeed(20);
+		speedo.setCurrentSpeed(30);
+		speedo.setCurrentSpeed(35);
+		
+	}
+	
+	public static void visitorPattern() {
+		WheelInterface wheel = new WideWheel(24); 
+		
+		//Run Diagnostics
+		wheel.acceptVisitor(new WheelDiagnostics());
+		
+		//Run Diagnostics 
+		wheel.acceptVisitor(new WheelInventory());
+	}
+	
+	public static void iteratorPatternV2() {
+		System.out.println("= = = Our Road Bikes = = =");
+		RoadBikeRange bikeRange = new RoadBikeRange(); 
+		for (BikeInterface bikes : bikeRange.getRange()) {
+			System.out.println(bikes);
+		}
+		System.out.println("= = = Our Mountain Bikes = = =");
+		MountainBikeRange mountainBikeRange = new MountainBikeRange(); 
+		for (BikeInterface bikes : mountainBikeRange.getRange()) {
+			System.out.println(bikes);
+		}
+	}
+		public static void iteratorPattern() {
+			System.out.println("= = = Our Road Bikes = = =");
+			RoadBikeRange bikeRange = new RoadBikeRange(); 
+			printIterator(bikeRange.iterator()); 
+			System.out.println("= = = Our Mountain Bikes = = =");
+			MountainBikeRange mountainBikeRange = new MountainBikeRange(); 
+			printIterator(mountainBikeRange.iterator()); 
+		}
+	
+	public static void printIterator(Iterator iter) {
+		while (iter.hasNext()) {
+			System.out.println(iter.next());
+		}
+	}
+	
+	public static void adapterPatterns() {
+		List<WheelInterface> wheels = new ArrayList<WheelInterface>(); 
+		UltraWheel ultraWheel = new UltraWheel(28); 
+		wheels.add(new NarrowWheel(24)); 
+		wheels.add(new NarrowWheel(20)); 
+		wheels.add(new WideWheel(24)); 
+		wheels.add(new UltraWheelAdapter(ultraWheel)); 
+		for (WheelInterface wheel : wheels) {
+			System.out.println(wheel);
+		}
+	}
+		
+		public static void creationalPatterns() {
+		//AbstractFactory
+		String whatToMake = "roadBike"; 
+		AbstractBikeFactory factory = new RoadBikeFactory(); 
+		BikeFrameInterface frame = factory.createFrame();
+		BikeSeatInterface seat = factory.createBikeSeat(); 
+		System.out.println(frame.getFrameParts());
+		System.out.println(seat.getSeatParts());
+		
+		
+		//Builder
+		RoadBike bike = new TouringBike(new NarrowWheel(22), Color.CHROME);
+		BikeBuilder builder = new RoadBikeBuilder(bike); 
+		BikeDirector director = new RoadBikeDirector(); 
+		BikeInterface bikeInterface = director.build(builder); 
+		System.out.println(bikeInterface);
+		
+		//Singleton
+		System.out.println("Generating Serial Numbers"); 
+		SerialNumberGenerator generator = SerialNumberGenerator.getInstance(); 
+		System.out.println("next serial" + generator.getNextSerial()); 
+		System.out.println("next serial" + generator.getNextSerial());
+		System.out.println("next serial" + generator.getNextSerial());
+		
+	}
+
+
 	public static void exceptionExample() {
 		ExceptionSample es = new ExceptionSample(); 
 		//es.myException();
